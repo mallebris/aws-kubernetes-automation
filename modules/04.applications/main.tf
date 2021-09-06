@@ -13,7 +13,7 @@ resource "helm_release" "kafka" {
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "kafka"
   version    = "14.0.5"
-  namespace = "kafka"
+  namespace  = "kafka"
 }
 
 resource "helm_release" "grafana" {
@@ -21,12 +21,12 @@ resource "helm_release" "grafana" {
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "grafana"
   version    = "6.1.11"
-  namespace = "default"
+  namespace  = "default"
   values = [
-     templatefile("${path.module}/files/configuration/grafana-tmpl.yaml",
-        {
-          hostname = var.nlb_endpoint
-        }
-     )
+    templatefile("${path.module}/files/configuration/grafana-tmpl.yaml",
+      {
+        hostname = var.nlb_endpoint
+      }
+    )
   ]
 }

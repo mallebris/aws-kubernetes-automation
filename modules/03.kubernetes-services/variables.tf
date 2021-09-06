@@ -1,15 +1,15 @@
 variable "eks_cluster_name" {
-  type = string
+  type        = string
   description = "EKS cluster name"
 }
 
 variable "eks_cluster_endpoint" {
-  type = string
+  type        = string
   description = "EKS control plane endpoint"
 }
 
 variable "eks_cluster_ca" {
-  type = string
+  type        = string
   description = "Kuberentes api server certificate data"
 }
 

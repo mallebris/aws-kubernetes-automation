@@ -30,7 +30,7 @@ resource "helm_release" "ingress" {
   repository = "https://kubernetes.github.io/ingress-nginx"
   chart      = "ingress-nginx"
   version    = "4.0.1"
-  namespace = "cluster-services"
+  namespace  = "cluster-services"
 
   values = [
     "${file("${path.module}/files/configuration/nginx-ingress.yaml")}"
