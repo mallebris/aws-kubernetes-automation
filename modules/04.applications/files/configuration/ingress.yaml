@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+    traefik.ingress.kubernetes.io/redirect-regex: ^(.*)/grafana$
+    traefik.ingress.kubernetes.io/redirect-replacement: $1/grafana/
+    traefik.ingress.kubernetes.io/request-modifier: 'ReplacePathRegex: ^/grafana/(.*)
+      /$1'
+    traefik.ingress.kubernetes.io/rule-type: PathPrefixStrip
+  name: grafana
+  namespace: default
+spec:
+  rules:
+  - host: kuberentes-nlb-e935136e811531e4.elb.us-east-2.amazonaws.com
+    http:
+      paths:
+      - backend:
+          serviceName: grafana
+          servicePort: 3000
+        path: /
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: grafana-chain
+spec:
+  chain:
+    middlewares:
+    - name: grafana-stripprefix
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: grafana-stripprefix
+spec:
+  stripPrefix:
+    prefixes:
+    - /

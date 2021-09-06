@@ -1,0 +1,15 @@
+ingress:
+  enabled: true
+  certManager: false
+  pathType: ImplementationSpecific
+  apiVersion: ""
+  hostname: ${hostname}
+  path: '/'
+  annotations: {
+    k8s.io/ingress-nginx: nginx
+  }
+  tls: false
+  extraHosts: []
+  extraPaths: []
+  extraTls: []
+  secrets: []

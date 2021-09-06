@@ -1,0 +1,24 @@
+deployment:
+  kind: DaemonSet
+
+logs:
+  level: INFO
+  general:
+    format: json
+  access:
+    enabled: true
+    format: json
+service:
+  type: NodePort
+ports:
+  web:
+    hostPort: 80
+  websecure:
+    hostPort: 443
+    tls:
+      enabled: true
+  traefik:
+    hostPort: 9000
+
+additionalArguments:
+- --providers.kubernetesingress.ingressendpoint.hostname=${ingress_dns_endpoint}

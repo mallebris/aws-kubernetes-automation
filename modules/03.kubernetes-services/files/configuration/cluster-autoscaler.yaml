@@ -1,0 +1,20 @@
+
+cloudProvider: aws
+
+rbac:
+  create: true
+
+extraVolumes:
+  - name: ssl-certs
+    hostPath:
+      path: /etc/ssl/certs/ca-bundle.crt
+
+extraVolumeMounts:
+  - name: ssl-certs
+    mountPath: /etc/ssl/certs/ca-certificates.crt
+    readOnly: true
+
+image:
+  repository: k8s.gcr.io/autoscaling/cluster-autoscaler
+  tag: v1.21.0
+  pullPolicy: IfNotPresent
