@@ -51,7 +51,9 @@ Here described depencies related to the upstream providers
         terraform plan -out=create.plan
         terraform apply create.plan
     ```
+## How it works
 
+![](images/flow.drawio.png)
 
 ## Cleanup
 There is no changes outside of the code. This repository should be used for cleaning up.
