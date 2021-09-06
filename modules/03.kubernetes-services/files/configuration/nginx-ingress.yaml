@@ -1,0 +1,21 @@
+controller:
+  name: nginx-ingress
+  image:
+    registry: k8s.gcr.io
+    image: ingress-nginx/controller
+    tag: "v1.0.0" # pin version in order to avoid unexpected updates
+    digest: sha256:0851b34f69f69352bf168e6ccf30e1e20714a264ab1ecd1933e4d8c0fc3215c6
+  kind: DaemonSet
+  watchIngressWithoutClass: true
+  extraArgs: {
+    --v=3
+  }
+  ingressClassResource:
+    name: nginx
+    enabled: true
+    default: true
+    controllerValue: "k8s.io/ingress-nginx"
+  service:
+    type: NodePort
+    nodePorts:
+      http: 30001
