@@ -15,6 +15,7 @@ module "eks" {
 }
 
 # TODO organize this nicer
+# Custom namespace for infra services
 resource "kubernetes_namespace" "cluster_service" {
   metadata {
     name = "cluster-services"
@@ -22,6 +23,7 @@ resource "kubernetes_namespace" "cluster_service" {
 }
 
 
+# cluster autoscaler policy creation/attachment
 resource "aws_iam_policy" "autoscaler" {
   name   = "${var.cluster_name}-autoscaler"
   policy = data.aws_iam_policy_document.autoscaler.json

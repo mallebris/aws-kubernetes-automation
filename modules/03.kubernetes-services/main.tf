@@ -25,9 +25,6 @@ resource "helm_release" "cluster_autoscaler" {
 # No real reasons for nginx ingress
 # probably because its the most old one available
 
-# Note: it creates classic LB outside of basic configuration
-# TODO: should be suppressed
-
 resource "helm_release" "ingress" {
   name       = "ingress-nginx"
   repository = "https://kubernetes.github.io/ingress-nginx"
@@ -40,19 +37,3 @@ resource "helm_release" "ingress" {
   ]
 
 }
-
-# resource "helm_release" "ingress" {
-#   name       = "traefik"
-#   repository = "https://helm.traefik.io/traefik"
-#   chart      = "traefik"
-#   version    = "9.15.2"
-#   namespace = "cluster-services"
-
-#   values = [
-#     templatefile("${path.module}/files/configuration/traefik-ingress.yaml",
-#       {
-#         ingress_dns_endpoint = var.nlb_endpoint
-#       }
-#     )
-#   ]
-# }

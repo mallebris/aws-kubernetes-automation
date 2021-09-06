@@ -14,11 +14,6 @@ resource "helm_release" "kafka" {
   chart      = "kafka"
   version    = "14.0.5"
   namespace = "kafka"
-
-  #   values = [
-  #   "${file("${path.module}/files/configuration/nginx-ingress.yaml")}"
-  # ]
-
 }
 
 resource "helm_release" "grafana" {

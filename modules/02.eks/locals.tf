@@ -25,7 +25,7 @@ locals {
     ]
   }]
 
-
+  # placeholder for two big RBAC roles
   # roles = {
   #     "reader" = [
   #     {
@@ -42,6 +42,7 @@ locals {
   #     }
   #     ]
   # }
+
   default_kubernetes_roles = [
     {
       rolearn  = ""
